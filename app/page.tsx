@@ -24,24 +24,24 @@ const navItems = ["Portfolio", "Services", "Packages", "Process", "FAQ"];
 const gallery = [
   {
     title: "Golden hour vows",
-    category: "Wedding",
+    category: "Ceremony",
     image:
       "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=90",
   },
   {
-    title: "Quiet bridal details",
+    title: "Rings, florals, and textures",
     category: "Details",
     image:
       "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=90",
   },
   {
-    title: "Reception glow",
-    category: "Event",
+    title: "Movement, laughter, and light",
+    category: "Reception",
     image:
       "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=90",
   },
   {
-    title: "Editorial portraits",
+    title: "Editorial couple sessions",
     category: "Portraits",
     image:
       "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=90",
@@ -76,7 +76,7 @@ const packages = [
   {
     name: "Signature",
     price: "$1,850",
-    detail: "The complete VowLens experience for full wedding days.",
+    detail: "The complete wedding experience for full-event storytelling.",
     featured: true,
     features: ["8 hours coverage", "2 photographers", "450 edited images", "Engagement mini session", "Online gallery"],
   },
@@ -125,7 +125,24 @@ const faqs = [
   },
 ];
 
-const process = ["Share your story", "Plan the visual direction", "Capture the celebration", "Deliver your timeless gallery"];
+const process = [
+  {
+    title: "Share Your Story",
+    copy: "Tell us your date, location, celebration type, and the moments that matter most.",
+  },
+  {
+    title: "Plan the Coverage",
+    copy: "We help shape the timeline, coverage hours, and photography direction.",
+  },
+  {
+    title: "Capture the Day",
+    copy: "Your wedding is documented with calm guidance and emotional attention to detail.",
+  },
+  {
+    title: "Receive Your Gallery",
+    copy: "Your edited gallery is delivered with timeless images ready to share and preserve.",
+  },
+];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -205,7 +222,7 @@ export default function Home() {
           </div>
 
           <a href="#inquiry" className="magnetic-button hidden rounded-full bg-[#241b16] px-6 py-3 text-sm font-semibold text-[#fff7ec] shadow-xl shadow-[#241b16]/15 lg:inline-flex">
-            Book a consultation
+            Check Availability
           </a>
 
           <button onClick={() => setMenuOpen((value) => !value)} className="grid h-11 w-11 place-items-center rounded-full border border-[#dcc8ad] bg-white/60 lg:hidden" aria-label="Open navigation menu">
@@ -230,25 +247,25 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="animate-[fade-up_900ms_cubic-bezier(0.22,1,0.36,1)_both]">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#dec7a4] bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#76552d] shadow-sm">
-              <Sparkles size={14} /> Modern wedding storytelling
+              <Sparkles size={14} /> Modern Wedding Storytelling
             </div>
             <h1 className="max-w-4xl font-serif text-5xl leading-[0.94] tracking-[-0.05em] text-[#211611] sm:text-6xl lg:text-[5.8rem]">
               Timeless wedding stories, captured with cinematic elegance.
             </h1>
             <p className="mt-8 max-w-2xl text-lg font-medium leading-8 text-[#5d4734]">
-              VowLens Studio captures weddings and events through refined, emotional, and cinematic visuals — preserving every glance, detail, and unforgettable moment with an artistic touch.
+              VowLens Studio captures weddings and events through a refined, emotional, and cinematic lens — preserving every glance, detail, and quiet in-between moment with an artistic touch.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a href="#portfolio" className="magnetic-button inline-flex items-center justify-center gap-2 rounded-full bg-[#241b16] px-7 py-4 text-sm font-semibold text-[#fff7ec] shadow-2xl shadow-[#241b16]/20">
-                View portfolio <ArrowRight size={17} />
+              <a href="#inquiry" className="magnetic-button inline-flex items-center justify-center gap-2 rounded-full bg-[#241b16] px-7 py-4 text-sm font-semibold text-[#fff7ec] shadow-2xl shadow-[#241b16]/20">
+                Check Availability <CalendarCheck size={17} />
               </a>
-              <a href="#inquiry" className="magnetic-button inline-flex items-center justify-center gap-2 rounded-full border border-[#d6bd96] bg-white/65 px-7 py-4 text-sm font-semibold text-[#241b16] hover:bg-white">
-                <CalendarCheck size={17} /> Book a consultation
+              <a href="#portfolio" className="magnetic-button inline-flex items-center justify-center gap-2 rounded-full border border-[#d6bd96] bg-white/65 px-7 py-4 text-sm font-semibold text-[#241b16] hover:bg-white">
+                View Portfolio <ArrowRight size={17} />
               </a>
             </div>
 
             <div className="mt-12 grid max-w-2xl grid-cols-3 gap-3">
-              {[["120+", "love stories"], ["8 yrs", "storytelling"], ["4.9/5", "experience"]].map(([value, label]) => (
+              {[["120+", "Love Stories"], ["8 Years", "Experience"], ["4.9/5", "Client Rating"]].map(([value, label]) => (
                 <div key={label} className="premium-hover rounded-3xl border border-[#eadcc9] bg-white/60 p-4 backdrop-blur">
                   <div className="font-serif text-3xl text-[#241b16]">{value}</div>
                   <div className="mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#765c3f]">{label}</div>
@@ -262,7 +279,7 @@ export default function Home() {
               <Heart className="mr-2 text-[#b58b50]" size={17} /> Emotion-led photography
             </div>
             <div className="image-zoom luxury-glow relative overflow-hidden rounded-[2.5rem] border border-white/60 bg-[#d9c4a4] p-3 shadow-2xl shadow-[#65472d]/20">
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90" alt="Elegant wedding couple photographed by VowLens Studio" className="h-[560px] w-full rounded-[2rem] object-cover" />
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90" alt="Cinematic wedding photography of an elegant couple by VowLens Studio" className="h-[560px] w-full rounded-[2rem] object-cover" />
               <div className="absolute inset-3 rounded-[2rem] bg-gradient-to-t from-[#1d120c]/70 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-[#fff7ec]">
                 <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#f6d7a4]"><Play size={14} /> Featured story</div>
@@ -294,7 +311,7 @@ export default function Home() {
               {gallery.map((item) => (
                 <button key={item.title} onClick={() => setSelectedImage(item)} className={`premium-hover group overflow-hidden rounded-[2rem] border p-3 text-left ${selectedImage.title === item.title ? "border-[#b58b50] bg-white/80 shadow-xl shadow-[#65472d]/10" : "border-[#eadcc9] bg-white/50"}`}>
                   <div className="flex items-center gap-4">
-                    <div className="image-zoom h-24 w-24 overflow-hidden rounded-[1.5rem]"><img src={item.image} alt={item.title} className="h-full w-full object-cover" /></div>
+                    <div className="image-zoom h-24 w-24 overflow-hidden rounded-[1.5rem]"><img src={item.image} alt={`${item.category} wedding photography preview: ${item.title}`} className="h-full w-full object-cover" /></div>
                     <div>
                       <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8f642a]">{item.category}</p>
                       <h3 className="mt-2 font-serif text-2xl text-[#241b16]">{item.title}</h3>
@@ -304,7 +321,7 @@ export default function Home() {
               ))}
             </div>
             <div className="image-zoom relative overflow-hidden rounded-[2.5rem] border border-white/60 bg-white/45 p-3 shadow-2xl shadow-[#65472d]/10">
-              <img src={selectedImage.image} alt={selectedImage.title} className="h-[620px] w-full rounded-[2rem] object-cover" />
+              <img src={selectedImage.image} alt={`VowLens Studio ${selectedImage.category.toLowerCase()} wedding photography: ${selectedImage.title}`} className="h-[620px] w-full rounded-[2rem] object-cover" />
               <div className="absolute bottom-8 left-8 rounded-full bg-[#fff7ec]/90 px-5 py-3 text-sm font-bold uppercase tracking-[0.22em] text-[#5f4734] backdrop-blur">{selectedImage.category} — {selectedImage.title}</div>
             </div>
           </div>
@@ -335,14 +352,14 @@ export default function Home() {
       <section data-reveal className="scroll-fade px-5 py-24 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="image-zoom relative overflow-hidden rounded-[2.5rem] border border-white/60 bg-white/50 p-3 shadow-2xl shadow-[#65472d]/10">
-            <img src="https://images.unsplash.com/photo-1529634597503-139d3726fed5?auto=format&fit=crop&w=1200&q=90" alt="Wedding rings and floral details" className="h-[560px] w-full rounded-[2rem] object-cover" />
+            <img src="https://images.unsplash.com/photo-1529634597503-139d3726fed5?auto=format&fit=crop&w=1200&q=90" alt="Wedding rings, florals, and detail-focused wedding photography" className="h-[560px] w-full rounded-[2rem] object-cover" />
           </div>
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#8f642a]">The signature style</p>
             <h2 className="mt-4 font-serif text-4xl leading-tight tracking-[-0.04em] sm:text-6xl">Refined direction with room for real emotion.</h2>
             <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-[#5d4734]">VowLens Studio blends guided editorial composition with quiet documentary observation, creating galleries that feel elevated without losing the sincerity of the day.</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {["Warm cinematic color grading", "Calm posing guidance", "Detail-focused storytelling", "Mobile-ready online galleries"].map((item) => (
+              {["Gentle direction when needed", "Calm, natural guidance", "Detail-focused storytelling", "Moments that feel unforced"].map((item) => (
                 <div key={item} className="premium-hover flex items-center gap-3 rounded-full border border-[#eadcc9] bg-white/65 px-4 py-3 text-sm font-semibold text-[#5f4734]"><Check size={16} className="text-[#a17a45]" /> {item}</div>
               ))}
             </div>
@@ -382,7 +399,13 @@ export default function Home() {
             <h2 className="mt-4 font-serif text-4xl leading-tight tracking-[-0.04em] sm:text-6xl">A calm, guided experience from first message to final gallery.</h2>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-4">
-            {process.map((step, index) => <div key={step} data-reveal className="premium-hover rounded-[2rem] border border-[#eadcc9] bg-white/60 p-6"><div className="font-serif text-5xl text-[#b8894f]">0{index + 1}</div><h3 className="mt-8 font-serif text-2xl text-[#241b16]">{step}</h3></div>)}
+            {process.map((step, index) => (
+              <div key={step.title} data-reveal className="premium-hover rounded-[2rem] border border-[#eadcc9] bg-white/60 p-6">
+                <div className="font-serif text-5xl text-[#b8894f]">0{index + 1}</div>
+                <h3 className="mt-8 font-serif text-2xl text-[#241b16]">{step.title}</h3>
+                <p className="mt-4 text-sm font-medium leading-6 text-[#5d4734]">{step.copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -421,9 +444,13 @@ export default function Home() {
       <section id="inquiry" data-reveal className="scroll-fade px-5 pb-24 lg:px-8">
         <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2.5rem] bg-[#241b16] shadow-2xl shadow-[#65472d]/20 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="image-zoom relative min-h-[480px] overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=90" alt="Wedding reception table with candles" className="absolute inset-0 h-full w-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=90" alt="Wedding reception table with candles for cinematic event storytelling" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#241b16] via-[#241b16]/20 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 text-[#fff7ec]"><p className="text-sm font-bold uppercase tracking-[0.3em] text-[#f0c98d]">Now booking</p><h2 className="mt-3 font-serif text-4xl tracking-[-0.04em]">Tell us what you want to remember forever.</h2></div>
+            <div className="absolute bottom-8 left-8 right-8 text-[#fff7ec]">
+              <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#f0c98d]">Now booking</p>
+              <h2 className="mt-3 font-serif text-4xl tracking-[-0.04em]">Tell us what you want to remember forever.</h2>
+              <p className="mt-4 max-w-md text-sm font-medium leading-6 text-[#e3d2bf]">Share your wedding date, location, and vision. We’ll respond with availability and package guidance.</p>
+            </div>
           </div>
           <form onSubmit={handleInquiry} className="space-y-5 p-6 text-[#fff7ec] sm:p-10 lg:p-14">
             <div className="grid gap-5 sm:grid-cols-2">
@@ -432,7 +459,7 @@ export default function Home() {
             </div>
             <label className="block space-y-2 text-sm font-semibold text-[#e3d2bf]">Event type<select name="event" className="w-full rounded-2xl border border-white/10 bg-white/12 px-4 py-4 text-[#fff7ec] outline-none focus:border-[#d9b987]"><option>Wedding</option><option>Engagement</option><option>Anniversary</option><option>Event coverage</option></select></label>
             <label className="block space-y-2 text-sm font-semibold text-[#e3d2bf]">Message<textarea name="message" rows={5} className="w-full resize-none rounded-2xl border border-white/10 bg-white/12 px-4 py-4 text-[#fff7ec] outline-none placeholder:text-[#b9a798] focus:border-[#d9b987]" placeholder="Share your date, location, and the feeling you want your gallery to have." /></label>
-            <button className="magnetic-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#fff7ec] px-7 py-4 text-sm font-bold text-[#241b16] sm:w-auto">Send inquiry <Mail size={17} /></button>
+            <button className="magnetic-button inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#fff7ec] px-7 py-4 text-sm font-bold text-[#241b16] sm:w-auto">Check My Date <Mail size={17} /></button>
           </form>
         </div>
       </section>
@@ -440,7 +467,7 @@ export default function Home() {
       <footer className="border-t border-[#eadcc9] px-5 py-10 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 text-sm font-medium text-[#5d4734] md:flex-row md:items-center">
           <div><div className="font-serif text-2xl tracking-[0.18em] text-[#241b16]">VOWLENS STUDIO</div><p className="mt-2">Premium wedding and event photography landing page concept.</p></div>
-          <div className="flex flex-wrap gap-3"><a className="magnetic-button inline-flex items-center gap-2 rounded-full border border-[#eadcc9] bg-white/60 px-4 py-2" href="#inquiry"><MessageCircle size={16} /> Start an inquiry</a><a className="magnetic-button inline-flex items-center gap-2 rounded-full border border-[#eadcc9] bg-white/60 px-4 py-2" href="#portfolio"><Camera size={16} /> View gallery</a></div>
+          <div className="flex flex-wrap gap-3"><a className="magnetic-button inline-flex items-center gap-2 rounded-full border border-[#eadcc9] bg-white/60 px-4 py-2" href="#inquiry"><MessageCircle size={16} /> Check availability</a><a className="magnetic-button inline-flex items-center gap-2 rounded-full border border-[#eadcc9] bg-white/60 px-4 py-2" href="#portfolio"><Camera size={16} /> View gallery</a></div>
         </div>
       </footer>
     </main>
