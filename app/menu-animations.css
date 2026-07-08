@@ -52,6 +52,47 @@ header .border-t a:nth-child(5) {
   }
 }
 
+@media (max-width: 767px) {
+  #packages > div > div.grid,
+  section:not(#packages) > div > div.mt-12.grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 1rem;
+    margin-inline: -1.25rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 0.35rem 1.25rem 1.35rem;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(90deg, transparent 0, black 1.25rem, black calc(100% - 1.25rem), transparent 100%);
+  }
+
+  #packages > div > div.grid::-webkit-scrollbar,
+  section:not(#packages) > div > div.mt-12.grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  #packages > div > div.grid > article,
+  section:not(#packages) > div > div.mt-12.grid > article {
+    flex: 0 0 min(86vw, 24rem);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  #packages > div > div.grid > article:hover,
+  section:not(#packages) > div > div.mt-12.grid > article:hover {
+    transform: translateY(-4px);
+  }
+
+  #packages > div > div.grid::after,
+  section:not(#packages) > div > div.mt-12.grid::after {
+    content: "";
+    flex: 0 0 0.35rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   header .border-t,
   header .border-t a {
