@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "./menu-animations.css";
 
@@ -59,7 +60,60 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${cormorant.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script id="mobile-carousel-active-dot" strategy="afterInteractive">
+          {`
+            (() => {
+              const selectors = [
+                '#packages > div > div.grid',
+                'section:not(#packages) > div > div.mt-12.grid'
+              ];
+
+              const update = (scroller) => {
+                const cards = Array.from(scroller.querySelectorAll('article'));
+                const parent = scroller.parentElement;
+                if (!cards.length || !parent) return;
+
+                const scrollerCenter = scroller.scrollLeft + scroller.clientWidth / 2;
+                let activeIndex = 0;
+                let smallestDistance = Infinity;
+
+                cards.forEach((card, index) => {
+                  const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                  const distance = Math.abs(cardCenter - scrollerCenter);
+                  if (distance < smallestDistance) {
+                    smallestDistance = distance;
+                    activeIndex = index;
+                  }
+                });
+
+                parent.dataset.carouselActive = String(activeIndex);
+              };
+
+              const init = () => {
+                selectors
+                  .flatMap((selector) => Array.from(document.querySelectorAll(selector)))
+                  .forEach((scroller) => {
+                    update(scroller);
+                    let frame = 0;
+                    scroller.addEventListener('scroll', () => {
+                      cancelAnimationFrame(frame);
+                      frame = requestAnimationFrame(() => update(scroller));
+                    }, { passive: true });
+                    window.addEventListener('resize', () => update(scroller), { passive: true });
+                  });
+              };
+
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init, { once: true });
+              } else {
+                init();
+              }
+            })();
+          `}
+        </Script>
+      </body>
     </html>
   );
 }
