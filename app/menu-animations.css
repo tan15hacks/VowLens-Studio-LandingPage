@@ -53,20 +53,72 @@ header .border-t a:nth-child(5) {
 }
 
 @media (max-width: 767px) {
+  #home + section.border-y {
+    display: none;
+  }
+
+  #home .grid.grid-cols-3 {
+    gap: 0.55rem;
+  }
+
+  #home .grid.grid-cols-3 > div {
+    min-width: 0;
+    padding: 0.9rem 0.55rem;
+    border-radius: 1.35rem;
+    text-align: center;
+  }
+
+  #home .grid.grid-cols-3 > div > div:first-child {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+    line-height: 1;
+  }
+
+  #home .grid.grid-cols-3 > div > div:last-child {
+    font-size: 0.54rem;
+    letter-spacing: 0.105em;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
   #packages > div > div.grid,
   section:not(#packages) > div > div.mt-12.grid {
+    position: relative;
     display: flex;
     grid-template-columns: none;
     gap: 1rem;
     margin-inline: -1.25rem;
     overflow-x: auto;
     overflow-y: visible;
-    padding: 0.35rem 1.25rem 1.35rem;
+    padding: 2.35rem 1.25rem 1.35rem;
     scroll-padding-inline: 1.25rem;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     mask-image: linear-gradient(90deg, transparent 0, black 1.25rem, black calc(100% - 1.25rem), transparent 100%);
+  }
+
+  #packages > div > div.grid::before,
+  section:not(#packages) > div > div.mt-12.grid::before {
+    position: absolute;
+    top: 0.45rem;
+    left: 1.25rem;
+    z-index: 2;
+    color: #d9b987;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  #packages > div > div.grid::before {
+    content: "Swipe to view packages →";
+  }
+
+  section:not(#packages) > div > div.mt-12.grid::before {
+    content: "Swipe to read more stories →";
+    color: #8f642a;
   }
 
   #packages > div > div.grid::-webkit-scrollbar,
