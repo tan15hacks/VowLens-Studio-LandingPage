@@ -17,7 +17,7 @@ import {
   Star,
   X,
 } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 const navItems = ["Portfolio", "Services", "Packages", "Process", "FAQ"];
 
@@ -144,10 +144,37 @@ const process = [
   },
 ];
 
+function updateCarouselIndex(element: HTMLDivElement | null, setIndex: (index: number) => void) {
+  if (!element) return;
+  const cards = Array.from(element.querySelectorAll<HTMLElement>("article"));
+  if (!cards.length) return;
+
+  const center = element.scrollLeft + element.clientWidth / 2;
+  let activeIndex = 0;
+  let smallestDistance = Number.POSITIVE_INFINITY;
+
+  cards.forEach((card, index) => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const distance = Math.abs(cardCenter - center);
+    if (distance < smallestDistance) {
+      smallestDistance = distance;
+      activeIndex = index;
+    }
+  });
+
+  setIndex(activeIndex);
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(gallery[0]);
   const [toast, setToast] = useState("");
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [serviceIndex, setServiceIndex] = useState(0);
+  const [processIndex, setProcessIndex] = useState(0);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
+  const serviceRef = useRef<HTMLDivElement | null>(null);
+  const processRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -306,7 +333,22 @@ export default function Home() {
             <p className="max-w-md text-base font-medium leading-7 text-[#5d4734]">Explore a curated preview of VowLens Studio&apos;s warm, cinematic direction for weddings, events, and editorial sessions.</p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+          <div ref={galleryRef} onScroll={() => updateCarouselIndex(galleryRef.current, setGalleryIndex)} className="[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 md:hidden">
+            {gallery.map((item) => (
+              <article key={item.title} className="premium-hover min-w-[86vw] snap-center overflow-hidden rounded-[2rem] border border-[#eadcc9] bg-white/65 p-3 shadow-sm">
+                <div className="image-zoom h-72 overflow-hidden rounded-[1.5rem]"><img src={item.image} alt={`${item.category} wedding photography preview: ${item.title}`} className="h-full w-full object-cover" /></div>
+                <div className="p-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8f642a]">{item.category}</p>
+                  <h3 className="mt-2 font-serif text-3xl text-[#241b16]">{item.title}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-4 flex justify-center gap-2 md:hidden" aria-hidden="true">
+            {gallery.map((item, index) => <span key={item.title} className={`h-2 rounded-full transition-all ${galleryIndex === index ? "w-7 bg-[#8f642a]" : "w-2 bg-[#8f642a]/30"}`} />)}
+          </div>
+
+          <div className="hidden gap-5 md:grid lg:grid-cols-[0.9fr_1.1fr]">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {gallery.map((item) => (
                 <button key={item.title} onClick={() => setSelectedImage(item)} className={`premium-hover group overflow-hidden rounded-[2rem] border p-3 text-left ${selectedImage.title === item.title ? "border-[#b58b50] bg-white/80 shadow-xl shadow-[#65472d]/10" : "border-[#eadcc9] bg-white/50"}`}>
@@ -334,17 +376,20 @@ export default function Home() {
             <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#8f642a]">Services</p>
             <h2 className="mt-4 font-serif text-4xl leading-tight tracking-[-0.04em] sm:text-6xl">Photography for celebrations that deserve to feel eternal.</h2>
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+          <div ref={serviceRef} onScroll={() => updateCarouselIndex(serviceRef.current, setServiceIndex)} className="[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-5 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <article key={service.title} data-reveal className="premium-hover rounded-[2rem] border border-[#eadcc9] bg-[#f8f2ea] p-8 shadow-sm">
+                <article key={service.title} data-reveal className="premium-hover min-w-[86vw] snap-center rounded-[2rem] border border-[#eadcc9] bg-[#f8f2ea] p-8 shadow-sm md:min-w-0">
                   <div className="grid h-14 w-14 place-items-center rounded-full bg-[#241b16] text-[#f9ead2]"><Icon size={22} /></div>
                   <h3 className="mt-8 font-serif text-3xl text-[#241b16]">{service.title}</h3>
                   <p className="mt-4 text-[15px] font-medium leading-7 text-[#5d4734]">{service.copy}</p>
                 </article>
               );
             })}
+          </div>
+          <div className="mt-4 flex justify-center gap-2 md:hidden" aria-hidden="true">
+            {services.map((service, index) => <span key={service.title} className={`h-2 rounded-full transition-all ${serviceIndex === index ? "w-7 bg-[#8f642a]" : "w-2 bg-[#8f642a]/30"}`} />)}
           </div>
         </div>
       </section>
@@ -398,14 +443,17 @@ export default function Home() {
             <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#8f642a]">Booking process</p>
             <h2 className="mt-4 font-serif text-4xl leading-tight tracking-[-0.04em] sm:text-6xl">A calm, guided experience from first message to final gallery.</h2>
           </div>
-          <div className="mt-14 grid gap-4 md:grid-cols-4">
+          <div ref={processRef} onScroll={() => updateCarouselIndex(processRef.current, setProcessIndex)} className="[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-5 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0 md:pb-0">
             {process.map((step, index) => (
-              <div key={step.title} data-reveal className="premium-hover rounded-[2rem] border border-[#eadcc9] bg-white/60 p-6">
+              <article key={step.title} data-reveal className="premium-hover min-w-[82vw] snap-center rounded-[2rem] border border-[#eadcc9] bg-white/60 p-6 md:min-w-0">
                 <div className="font-serif text-5xl text-[#b8894f]">0{index + 1}</div>
                 <h3 className="mt-8 font-serif text-2xl text-[#241b16]">{step.title}</h3>
                 <p className="mt-4 text-sm font-medium leading-6 text-[#5d4734]">{step.copy}</p>
-              </div>
+              </article>
             ))}
+          </div>
+          <div className="mt-4 flex justify-center gap-2 md:hidden" aria-hidden="true">
+            {process.map((step, index) => <span key={step.title} className={`h-2 rounded-full transition-all ${processIndex === index ? "w-7 bg-[#8f642a]" : "w-2 bg-[#8f642a]/30"}`} />)}
           </div>
         </div>
       </section>
@@ -464,10 +512,39 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-[#eadcc9] px-5 py-10 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 text-sm font-medium text-[#5d4734] md:flex-row md:items-center">
-          <div><div className="font-serif text-2xl tracking-[0.18em] text-[#241b16]">VOWLENS STUDIO</div><p className="mt-2">Premium wedding and event photography landing page concept.</p></div>
-          <div className="flex flex-wrap gap-3"><a className="magnetic-button inline-flex items-center gap-2 rounded-full border border-[#eadcc9] bg-white/60 px-4 py-2" href="#inquiry"><MessageCircle size={16} /> Check availability</a><a className="magnetic-button inline-flex items-center gap-2 rounded-full border border-[#eadcc9] bg-white/60 px-4 py-2" href="#portfolio"><Camera size={16} /> View gallery</a></div>
+      <footer className="border-t border-[#eadcc9] bg-[#fff9f0] px-5 py-14 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 text-sm font-medium text-[#5d4734] md:grid-cols-[1.3fr_0.8fr_0.8fr_0.9fr]">
+          <div>
+            <div className="font-serif text-3xl tracking-[0.18em] text-[#241b16]">VOWLENS STUDIO</div>
+            <p className="mt-4 max-w-md leading-7">Premium wedding photography and event storytelling for couples who want refined, emotional, and cinematic galleries.</p>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-[#8f642a]">Studio</h3>
+            <div className="mt-5 space-y-3">
+              <a href="#portfolio" className="block text-[#5d4734] hover:text-[#241b16]">Portfolio</a>
+              <a href="#services" className="block text-[#5d4734] hover:text-[#241b16]">Services</a>
+              <a href="#packages" className="block text-[#5d4734] hover:text-[#241b16]">Packages</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-[#8f642a]">Booking</h3>
+            <div className="mt-5 space-y-3">
+              <a href="#process" className="block text-[#5d4734] hover:text-[#241b16]">Process</a>
+              <a href="#faq" className="block text-[#5d4734] hover:text-[#241b16]">FAQ</a>
+              <a href="#inquiry" className="block text-[#5d4734] hover:text-[#241b16]">Check Availability</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.28em] text-[#8f642a]">Contact</h3>
+            <div className="mt-5 space-y-3">
+              <a href="mailto:VowLensStudio@gmail.com" className="block text-[#5d4734] hover:text-[#241b16]">VowLensStudio@gmail.com</a>
+              <a href="#" className="block text-[#5d4734] hover:text-[#241b16]">Instagram</a>
+              <a href="#" className="block text-[#5d4734] hover:text-[#241b16]">Facebook</a>
+            </div>
+          </div>
         </div>
       </footer>
     </main>
