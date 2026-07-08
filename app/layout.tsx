@@ -17,20 +17,23 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vowlens-studio.vercel.app"),
-  title: "VowLens Studio — Wedding & Event Photography",
+  title: "VowLens Studio | Wedding Photography & Event Storytelling",
   description:
-    "A premium wedding and event photography landing page for elegant, emotional, and cinematic visual storytelling.",
+    "VowLens Studio captures weddings and events through refined wedding photography, cinematic event storytelling, editorial portraits, and emotional galleries designed to preserve every meaningful moment.",
   keywords: [
     "wedding photography",
     "event photography",
-    "photography landing page",
+    "wedding photographer",
+    "event storytelling",
+    "cinematic wedding photography",
+    "editorial wedding portraits",
+    "wedding photo gallery",
     "VowLens Studio",
-    "cinematic wedding photographer",
   ],
   openGraph: {
-    title: "VowLens Studio — Wedding & Event Photography",
+    title: "VowLens Studio | Wedding Photography & Event Storytelling",
     description:
-      "Timeless wedding stories captured with cinematic elegance by VowLens Studio.",
+      "Timeless wedding stories captured with cinematic elegance, emotional detail, and refined visual storytelling.",
     url: "https://vowlens-studio.vercel.app",
     siteName: "VowLens Studio",
     images: [
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "VowLens Studio wedding photography landing page",
+        alt: "VowLens Studio wedding photography and event storytelling landing page",
       },
     ],
     locale: "en_US",
@@ -46,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VowLens Studio — Wedding & Event Photography",
+    title: "VowLens Studio | Wedding Photography & Event Storytelling",
     description:
-      "A cinematic, premium landing page concept for a modern wedding photography studio.",
+      "A cinematic, premium landing page concept for a modern wedding photography and event storytelling studio.",
     images: ["/og-image.svg"],
   },
 };
