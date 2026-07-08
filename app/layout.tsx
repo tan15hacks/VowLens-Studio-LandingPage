@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist } from "next/font/google";
 import "./globals.css";
+import "./menu-animations.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
