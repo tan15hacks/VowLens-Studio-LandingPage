@@ -62,7 +62,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${cormorant.variable}`}>
       <body>
         {children}
-        <Script id="mobile-carousel-active-dot" strategy="afterInteractive">
+        <Script id="mobile-carousel-active-dot" strategy="lazyOnload">
           {`
             (() => {
               const selectors = [
