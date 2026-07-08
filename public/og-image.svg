@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="VowLens Studio social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7ec"/>
+      <stop offset="0.55" stop-color="#f4dfbf"/>
+      <stop offset="1" stop-color="#241b16"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="20%" r="65%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <circle cx="965" cy="135" r="170" fill="#241b16" opacity="0.12"/>
+  <circle cx="1005" cy="500" r="230" fill="#fff7ec" opacity="0.12"/>
+  <rect x="76" y="72" width="1048" height="486" rx="46" fill="none" stroke="#241b16" stroke-opacity="0.18" stroke-width="2"/>
+  <text x="105" y="155" fill="#8b6f52" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="12">WEDDING &amp; EVENT PHOTOGRAPHY</text>
+  <text x="105" y="305" fill="#241b16" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="500" letter-spacing="-4">VowLens Studio</text>
+  <text x="105" y="382" fill="#5f4734" font-family="Arial, Helvetica, sans-serif" font-size="31">Timeless wedding stories captured with cinematic elegance.</text>
+  <g transform="translate(105 438)">
+    <rect width="250" height="62" rx="31" fill="#241b16"/>
+    <text x="32" y="40" fill="#fff7ec" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">VIEW PORTFOLIO</text>
+  </g>
+</svg>
