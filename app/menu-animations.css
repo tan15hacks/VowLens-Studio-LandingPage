@@ -103,6 +103,12 @@ header .border-t a:nth-child(5) {
     overflow-wrap: anywhere;
   }
 
+  #packages > div,
+  section:not(#packages) > div:has(> div.mt-12.grid) {
+    position: relative;
+    padding-bottom: 1.4rem;
+  }
+
   #packages > div > div.grid,
   section:not(#packages) > div > div.mt-12.grid {
     position: relative;
@@ -112,7 +118,7 @@ header .border-t a:nth-child(5) {
     margin-inline: -1.25rem;
     overflow-x: auto;
     overflow-y: visible;
-    padding: 0.35rem 1.25rem 2.25rem;
+    padding: 0.35rem 1.25rem 1.15rem;
     scroll-padding-inline: 1.25rem;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -137,23 +143,24 @@ header .border-t a:nth-child(5) {
     transform: translateY(-4px);
   }
 
-  #packages > div > div.grid::after,
-  section:not(#packages) > div > div.mt-12.grid::after {
+  #packages > div::after,
+  section:not(#packages) > div:has(> div.mt-12.grid)::after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 0.35rem;
+    bottom: 0;
     width: 3.2rem;
     height: 0.55rem;
     transform: translateX(-50%);
     border-radius: 999px;
+    pointer-events: none;
     background:
       radial-gradient(circle at 12% 50%, #d9b987 0 0.18rem, transparent 0.19rem),
       radial-gradient(circle at 50% 50%, rgba(217, 185, 135, 0.46) 0 0.15rem, transparent 0.16rem),
       radial-gradient(circle at 88% 50%, rgba(217, 185, 135, 0.46) 0 0.15rem, transparent 0.16rem);
   }
 
-  section:not(#packages) > div > div.mt-12.grid::after {
+  section:not(#packages) > div:has(> div.mt-12.grid)::after {
     background:
       radial-gradient(circle at 12% 50%, #8f642a 0 0.18rem, transparent 0.19rem),
       radial-gradient(circle at 50% 50%, rgba(143, 100, 42, 0.4) 0 0.15rem, transparent 0.16rem),
