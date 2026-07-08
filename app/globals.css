@@ -67,6 +67,17 @@ textarea:focus-visible {
   outline-offset: 4px;
 }
 
+select option {
+  background: #fff7ec;
+  color: #241b16;
+  font-weight: 700;
+}
+
+select option:checked {
+  background: #7a7068;
+  color: #fff7ec;
+}
+
 header nav > div a {
   position: relative;
   display: inline-flex;
@@ -131,11 +142,11 @@ header nav > div a:hover::after {
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(34px) scale(0.985);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -155,16 +166,29 @@ header nav > div a:hover::after {
 
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(34px) scale(0.985);
+  transform: translateY(20px);
   transition:
-    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal-on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
+}
+
+#inquiry.reveal-on-scroll,
+#inquiry.scroll-fade {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+#inquiry .image-zoom img,
+#inquiry .image-zoom:hover img {
+  transform: none !important;
+  filter: saturate(1.1) contrast(1.08) brightness(0.94) !important;
 }
 
 .premium-hover {
